@@ -2,7 +2,7 @@
 const express = require('express');
 
 //array to hold calculator data objects
-//{firstOperand: number, secondOperand: number, operator: 'string'}
+//{firstOperand: number, secondOperand: number, operator: 'string', result: number}
 const calcHistory = [];
 
 //this library comes with express, but we still need to import it explicitly
@@ -26,11 +26,11 @@ app.get('/getCalcs', (req, res) => {
 
 //add POST handlers
 app.post('/newCalc', (req, res) => {
-    console.log('SERVER: POST at /newCalc');
+    console.log('SERVER: POST at /newCalc', req.body);
     //calculate, then store the new calculation data in the history
-    calculate(req);
+    calculate(req.body);
     //send CREATED status
-    res.send(201);
+    res.sendStatus(201);
 })
 
 //add express server listener on port 5000
@@ -41,23 +41,28 @@ app.listen(PORT, () => {
 //calculator functions
 function calculate(calcData){
     console.log('SERVER: In calculate');
-    //store the operands and operator
-    calcHistory.push(calcData);
+
     //make calculation by operator and store solution
     switch(calcData.operator){
         case '+':
             //addition
+            calcData.result = Number(calcData.firstOperand) + Number(calcData.secondOperand);
             break;
         case '-':
             //subtraction
+            calcData.result = Number(calcData.firstOperand) - calcData.secondOperand;
             break;
         case '*':
             //multiply
+            calcData.result = Number(calcData.firstOperand) * calcData.secondOperand;
             break;
         case '/':
-            //divide
+            //divide and round down
+            calcData.result = Math.floor(Number(calcData.firstOperand) / calcData.secondOperand);
             break;
         default:
-            //default
+            calcData.result = 'ERR';
     } //end switch
+    //store the operands and operator
+    calcHistory.push(calcData);
 } //end calculate

@@ -49,6 +49,7 @@ function submitHandler(){
     //store input fields in inputdata object
     inputData.firstOperand = $('#operandInput').val();
     inputData.secondOperand = $('#secondOperandInput').val();
+    console.log('inputData', inputData);
     $.ajax({
         url: '/newCalc',
         type: 'POST',
@@ -68,15 +69,15 @@ function clearInputsHandler(){
 } //end clearInputsHandler
 
 function operationHandler(){
-    console.log('operationHandler');
+    console.log('operationHandler', this.id);
     //store the triggering operation type in input data object
-    if(this.val === '+'){
+    if(this.id === 'additionButton'){
         inputData.operator = '+';
-    } else if(this.val === '-'){
+    } else if(this.id === 'subtractButton'){
         inputData.operator = '-';
-    } else if(this.val === '*'){
+    } else if(this.id === 'multiplyButton'){
         inputData.operator = '*';
-    } else if(this.val === '/'){
+    } else if(this.id === 'divisionButton'){
         inputData.operator = '/';
     }
 } //end operationHandler
