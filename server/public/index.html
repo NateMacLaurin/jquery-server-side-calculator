@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Server Side Calculator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./vendors/jquery-3.5.1.min.js"></script>
+        <script src="./client.js"></script>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <h1 id="displayTitle">Server Side Calculator</h1>
+        <div id="calcInputs">
+            <input type="operandInput" class="calcInput" id="value" placeholder="Operand" />
+            <button id="additionButton" class="calcInput">+</button>
+            <button id="subtractButton" class="calcInput">-</button>
+            <button id="multiplyButton" class="calcInput">*</button>
+            <button id="divisionButton" class="calcInput">/</button>
+            <input type="SecondOperandInput" class="calcInput" id="value" placeholder="Second Operand" />
+            <button id="equalsButton" class="calcInput">=</button>
+            <button id="clearButton" class="calcInput">C</button>
+        </div>
+        <h1 id="resultDisplay">
+        <!--Results Here-->
+        </h1>
+        <ul id="historyDisplay">
+        <!--History Here-->
+        </ul>
+    </body>
+</html>
