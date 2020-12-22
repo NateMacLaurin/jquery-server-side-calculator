@@ -35,7 +35,7 @@ function getCalcs(){
 
 function clearDOM(){
     console.log('In clearDOM');
-    $('#resultDisplay').val('');
+    $('#resultDisplay').text('');
     $('#historyDisplay').empty();
 } //end clearDOM
 
@@ -44,7 +44,7 @@ function appendDOM(data){
     //clear stale data
     clearDOM();
     //append the latest result
-    $('#resultDisplay').append(`${data[data.length-1].result}`);
+    $('#resultDisplay').text(`${data[data.length-1].result}`);
     //append the whole history of calculations
     data.forEach(equation => {
         $('#historyDisplay').append(`<li>${equation.firstOperand} ${equation.operator} ${equation.secondOperand} = ${equation.result}</li>`);
