@@ -57,7 +57,7 @@ function submitHandler(){
     }).then(function(response){
         console.log('Posted to Server');
         //clear input fields
-        clearInputsHandler;
+        clearInputsHandler();
         //after posting, GET new data from server
         getCalcs();
     })
@@ -65,7 +65,7 @@ function submitHandler(){
 
 function clearInputsHandler(){
     console.log('In clearInputsHandler');
-    $('.numInput').empty();
+    $('.numInput').val('');
 } //end clearInputsHandler
 
 function operationHandler(){
