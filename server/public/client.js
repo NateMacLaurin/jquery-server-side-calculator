@@ -11,7 +11,7 @@ function handleReady(){
     console.log('CLIENT: JQ sourced from vendors/jquery-3.5.1.min.js');
 
     //GET data from server and append DOM
-    getCalcs();
+    //getCalcs();
 
     //add click handler to equals button
     $('#equalsButton').on('click', submitHandler);
@@ -36,17 +36,18 @@ function getCalcs(){
 function clearDOM(){
     console.log('In clearDOM');
     $('#resultDisplay').val('');
-    $('#historyDisplay').val('');
+    $('#historyDisplay').empty();
 } //end clearDOM
 
 function appendDOM(data){
     console.log('In appendDOM');
+    //clear stale data
+    clearDOM();
     //append the latest result
-    $('#resultDisplay').append(`<h3>${data[data.length-1].result}</h3>`);
+    $('#resultDisplay').append(`${data[data.length-1].result}`);
     //append the whole history of calculations
     data.forEach(equation => {
-        $('#historyDisplay').append(`
-        <li>${equation.firstOperand} ${equation.operator} ${equation.secondOperand} = ${equation.result}</li>`);
+        $('#historyDisplay').append(`<li>${equation.firstOperand} ${equation.operator} ${equation.secondOperand} = ${equation.result}</li>`);
     })
 } //end appendDOM
 
