@@ -2,6 +2,7 @@
 const express = require('express');
 
 //array to hold calculator data objects
+//{firstOperand: number, secondOperand: number, operator: 'string'}
 const calcHistory = [];
 
 //this library comes with express, but we still need to import it explicitly

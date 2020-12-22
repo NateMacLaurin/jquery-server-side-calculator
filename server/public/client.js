@@ -34,6 +34,7 @@ function getCalcs(){
 } //end getCalcs
 
 function clearDOM(){
+    console.log('In clearDOM');
     $('#resultDisplay').empty();
     $('#historyDisplay').empty();
 } //end clearDOM
@@ -45,7 +46,20 @@ function appendDOM(data){
 
 function submitHandler(){
     console.log('In submitHandler');
-    
+    //store input fields in inputdata object
+    inputData.firstOperand = $('#operandInput').val();
+    inputData.secondOperand = $('#secondOperandInput').val();
+    $.ajax({
+        url: '/newCalc',
+        type: 'POST',
+        data: inputData
+    }).then(function(response){
+        console.log('Posted to Server');
+        //clear input fields
+        clearInputsHandler;
+        //after posting, GET new data from server
+        getCalcs();
+    })
 } //end submitHandler
 
 function clearInputsHandler(){
