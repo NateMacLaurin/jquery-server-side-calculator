@@ -35,13 +35,19 @@ function getCalcs(){
 
 function clearDOM(){
     console.log('In clearDOM');
-    $('#resultDisplay').empty();
-    $('#historyDisplay').empty();
+    $('#resultDisplay').val('');
+    $('#historyDisplay').val('');
 } //end clearDOM
 
 function appendDOM(data){
     console.log('In appendDOM');
-
+    //append the latest result
+    $('#resultDisplay').append(`<h3>${data[data.length-1].result}</h3>`);
+    //append the whole history of calculations
+    data.forEach(equation => {
+        $('#historyDisplay').append(`
+        <li>${equation.firstOperand} ${equation.operator} ${equation.secondOperand} = ${equation.result}</li>`);
+    })
 } //end appendDOM
 
 function submitHandler(){
